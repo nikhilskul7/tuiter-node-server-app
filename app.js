@@ -26,7 +26,7 @@ app.use(
  
 
  app.use((req, res, next) => {
-  const allowedOrigins = [ "https://a5--famous-dodol-bacd67.netlify.app/","http://localhost:3000","https://a6--famous-dodol-bacd67.netlify.app/"];
+  const allowedOrigins = [ "https://a5--famous-dodol-bacd67.netlify.app","http://localhost:3000","https://a6--famous-dodol-bacd67.netlify.app"];
   const origin = req.headers.origin;
 
   if (allowedOrigins.includes(origin)) {
