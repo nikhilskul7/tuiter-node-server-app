@@ -55,4 +55,8 @@ export const deleteUser = async (req, res) => {
   };
   
 
-  
+  export const findUserByUsername = (username) => {
+    const index = users.findIndex((u) => u.username === username);
+    if (index !== -1) return users[index];
+    return null;
+   };
