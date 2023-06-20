@@ -6,11 +6,19 @@ import AuthController from "./controllers/users/auth-controller.js";
 import cors from 'cors'
 import session from "express-session";
 import mongoose from "mongoose";
-mongoose.connect("mongodb://127.0.0.1:27017/tuiter");
+
+const options = {
+  connectTimeoutMS: 30000, // Increase the timeout value (in milliseconds)
+};
+
 const app = express()
 app.set("trust proxy",1);
 const CONNECTION_STRING = process.env.DB_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/tuiter'
-mongoose.connect(CONNECTION_STRING);
+mongoose.connect(CONNECTION_STRING, options);
+const db = mongoose.connection;
+db.on("error", (error) => {
+  console.error("MongoDB connection error:", error);
+});
 app.use(
   session({
     secret: "nikhilk",
