@@ -23,7 +23,12 @@ app.use(
     },
   })
  );
- 
+ app.use(cors({
+  origin: ["https://a5--famous-dodol-bacd67.netlify.app", "http://localhost:3000", "https://a6--famous-dodol-bacd67.netlify.app"],
+  methods: ["GET", "PUT", "POST", "DELETE", "PATCH", "OPTIONS"],
+  credentials: true,
+  allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept"],
+}));
 
  app.use((req, res, next) => {
   const allowedOrigins = [ "https://a5--famous-dodol-bacd67.netlify.app","http://localhost:3000","https://a6--famous-dodol-bacd67.netlify.app"];
@@ -32,11 +37,7 @@ app.use(
   if (allowedOrigins.includes(origin)) {
       res.header("Access-Control-Allow-Origin", origin);
   }
-  res.set({
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "*",
-    "Access-Control-Allow-Headers": "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
-});
+  
 
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
