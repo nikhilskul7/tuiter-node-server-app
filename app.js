@@ -8,13 +8,19 @@ import session from "express-session";
 import mongoose from "mongoose";
 mongoose.connect("mongodb://127.0.0.1:27017/tuiter");
 const app = express()
+app.set("trust proxy",1);
 const CONNECTION_STRING = process.env.DB_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/tuiter'
 mongoose.connect(CONNECTION_STRING);
 app.use(
   session({
     secret: "nikhilk",
     resave: false,
-    saveUninitialized: true,
+    proxy:true,
+    saveUninitialized: false,
+    cookie:{
+      sameSite:"none",
+      secure:true,
+    },
   })
  );
  
@@ -26,6 +32,11 @@ app.use(
   if (allowedOrigins.includes(origin)) {
       res.header("Access-Control-Allow-Origin", origin);
   }
+  res.set({
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "*",
+    "Access-Control-Allow-Headers": "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
+});
 
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
