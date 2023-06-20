@@ -13,7 +13,7 @@ const options = {
 
 const app = express()
 app.set("trust proxy",1);
-const CONNECTION_STRING = process.env.DB_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/tuiter'
+const CONNECTION_STRING = "mongodb+srv://nikhilskul7:<nikhilskul7>@cluster0.gnntpjo.mongodb.net/tuiter?retryWrites=true&w=majority"
 mongoose.connect(CONNECTION_STRING, options);
 const db = mongoose.connection;
 db.on("error", (error) => {
