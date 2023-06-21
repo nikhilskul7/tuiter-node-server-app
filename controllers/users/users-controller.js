@@ -1,5 +1,5 @@
-import people from './users.js'
-let users = people
+
+let users = []
 const UserController = (app) => {
    app.get('/api/users', findUsers);
    app.get('/api/users/:uid', findUserById);
@@ -10,6 +10,8 @@ const UserController = (app) => {
 const createUser = (req, res) => {
     const newUser = req.body;
     newUser._id = (new Date()).getTime() + '';
+    console.log("Created");
+    console.log(newUser);
     users.push(newUser);
     res.json(newUser);
   }

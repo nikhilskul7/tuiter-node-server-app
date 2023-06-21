@@ -22,6 +22,7 @@ export const findUserByCredentials = (username, password) => {
 
 export const createUser = (user) => {
     users.push(user);
+    console.log("Pushed");
     return user;
 }
 
